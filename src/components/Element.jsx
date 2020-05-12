@@ -55,7 +55,6 @@ function Element({results}){
            
                     <Clock />
                     <div className="container_text_informations_weather">
-                    {results.weather[0].main}
                         <p className="element_information_weather text_information_weather_description">Temps: {results.weather[0].description}</p>
                         <img className="element_information_weather image_information_weather" src ={`http://openweathermap.org/img/wn/${results.weather[0].icon}.png`} />
                         <p className="element_information_weather text_information_weather_temperature">Temérature: {Math.round(results.main.temp)}</p>

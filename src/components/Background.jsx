@@ -1,22 +1,15 @@
 import React, { useEffect } from 'react';
 import Tree from './svgElements/Tree';
 import Cloud from './svgElements/Cloud';
+import Sun from '../components/BackgroundDynamic/Sun'
+import Clouds from './BackgroundDynamic/Clouds';
+import Rain from './BackgroundDynamic/Rain';
 
 function Background(props){
 
-    
-
-    // alert(props.results.weather[0].main)
-    // useEffect(()=>{
-
-    //     alert(JSON.stringify(props.results.weather[0].main))
-    
-    // },[props.results])
-
-
-
     return(
         <section className="background">
+
 
             <svg height="390" width="550" id="mountains">
                 <polygon points="300,390 190,90 320,130 400,340" fill="#5d2042" />
@@ -37,43 +30,17 @@ function Background(props){
                 </g>
             </svg>
 
-            {
-                props.weather === 'Clouds' && <h1>!!!!! OK !!!!</h1>
-            }
-            <Cloud 
-                className="cloud1 cloud"
-            />
+            {/* {
+                props.weather === 'Clouds' ?
 
-            {/* <Cloud 
-                transform="scale(1.4)"
-                className="cloud2  cloud"
-            />
-
-            <Cloud 
-                transform="scale(1.2)"
-                className="cloud3  cloud"
-            /> 
-
-            <Cloud 
-                transform="scale(1.6)"
-                className="cloud4  cloud"
-            /> 
-
-            <Cloud 
-                transform="scale(1.4)"
-                className="cloud5  cloud"
-            />  
-
-            <Cloud 
-                transform="scale(1.6)"
-                className="cloud6  cloud"
-            /> */}
-                  
-
+                <Clouds />
                 
-               
-            
 
+                :
+
+                null
+            } */}
+            
             <svg id="ground"></svg>
 
             <svg id="hills" width="700" height="170">
