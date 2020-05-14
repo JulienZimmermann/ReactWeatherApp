@@ -1,16 +1,29 @@
 import React, { useEffect } from 'react';
 import Tree from './svgElements/Tree';
-import Cloud from './svgElements/Cloud';
 import Sun from '../components/BackgroundDynamic/Sun'
 import Clouds from './BackgroundDynamic/Clouds';
 import Rain from './BackgroundDynamic/Rain';
+import Thunderstorm from './BackgroundDynamic/Thunderstorm';
 
 function Background(props){
 
+    function weatherCondition(weather){
+        if(weather === 'Thunderstorm'){
+            return <Thunderstorm />
+        }else if(weather === 'Rain' || weather === 'Drizzle'){
+            return <Rain />
+        }else if(weather === 'Clouds'){
+            return <Clouds />
+        }else{
+            return <Sun />
+        }
+    }
+
     return(
         <section className="background">
-
-
+            {
+             weatherCondition(props.weather)  
+            }
             <svg height="390" width="550" id="mountains">
                 <polygon points="300,390 190,90 320,130 400,340" fill="#5d2042" />
                 <polygon points="0,340 108,190 194,100 201,120 301,390" fill="#320e40" />
@@ -40,6 +53,8 @@ function Background(props){
 
                 null
             } */}
+
+           
             
             <svg id="ground"></svg>
 
