@@ -8,14 +8,29 @@ import Thunderstorm from './BackgroundDynamic/Thunderstorm';
 function Background(props){
 
     function weatherCondition(weather){
-        if(weather === 'Thunderstorm'){
-            return <Thunderstorm />
-        }else if(weather === 'Rain' || weather === 'Drizzle'){
-            return <Rain />
-        }else if(weather === 'Clouds'){
-            return <Clouds />
-        }else{
-            return <Sun />
+        // if(weather === 'Thunderstorm'){
+        //     return <Thunderstorm />
+        // }else if(weather === 'Rain' || weather === 'Drizzle'){
+        //     return <Rain />
+        // }else if(weather === 'Clouds'){
+        //     return <Clouds />
+        // }else{
+        //     return <Sun />
+        // }
+        switch(weather){
+            case 'Thunderstorm':
+                return <Thunderstorm />;
+                break;
+            case 'Rain':
+            case ' Drizzle':
+                return <Rain />;
+                break;
+            case 'Clouds':
+                return <Clouds />;
+                break;
+            default:
+                return <Sun />
+
         }
     }
 
