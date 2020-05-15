@@ -4,7 +4,8 @@ import Cloud from '../svgElements/Cloud'
 function Clouds(){
 
     return(
-        <React.Fragment>
+
+        <div className="sky_weather sky_clouds">
             <Cloud 
                 className="cloud1 cloud"
             />
@@ -33,7 +34,7 @@ function Clouds(){
                 transform="scale(1.6)"
                 className="cloud6  cloud"
             />
-                </React.Fragment>
+        </div>
     )
 }
 

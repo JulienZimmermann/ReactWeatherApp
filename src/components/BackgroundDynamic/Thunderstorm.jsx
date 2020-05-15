@@ -3,10 +3,10 @@ import Rain from './Rain';
 
 function Thunderstorm(){
     return(
-        <React.Fragment>
-            <div className="thunderstorm"></div>
-            <Rain />
-        </React.Fragment>
+            <div className="sky_weather sky_thunderstorm">
+                <div className="thunderstorm"></div>
+                <Rain />
+            </div>
     )
 }
 

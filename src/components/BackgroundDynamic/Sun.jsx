@@ -1,8 +1,12 @@
 import React from 'react';
 
 function Sun(){
+
     return(
-        <div className="sun"></div>
+        <div className="sky_weather sky_sun">
+           <div className="sun"></div> 
+        </div>
+        
     )
 }
 
