@@ -1,47 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Clock from './Clock';
 
 
 function Element({results}){
 
-    // function weatherCondition(description){
-
-    //     switch(description){
-    //         case 'Thunderstorm':
-    //          console.log("11d")
-    //          break;
-        
-    //         case 'Drizzle':
-    //             console.log("09d")
-    //             break;
-
-    //         case 'Rain':
-    //             console.log("10d")
-    //             break;
-
-    //         case 'Snow':
-    //             console.log("13d")
-    //             break;
-
-    //         case 'Clear':
-    //             console.log("01d")
-    //             break;
-
-    //         case 'Clouds':
-    //             console.log("02d")
-    //             break;
-
-    //         default:
-    //             console.log("default")      
-    //     }
-
-    // }
-
     return(
 
-        
         <React.Fragment>
+
             <div className="element_weather">
+
+            <h1><Clock /></h1>
 
               {results.length === 0 ? 
 
@@ -49,11 +18,11 @@ function Element({results}){
 
                 :
 
+                
                 <div className="container_informations_weather">
-                   
+                    
                     <h1 className="big_title_informations_weather">{results.name}</h1>
-           
-                    <Clock />
+                    
                     <div className="container_text_informations_weather">
                         <p className="element_information_weather text_information_weather_description">Temps: {results.weather[0].description}</p>
                         <img className="element_information_weather image_information_weather" src ={`http://openweathermap.org/img/wn/${results.weather[0].icon}.png`} />

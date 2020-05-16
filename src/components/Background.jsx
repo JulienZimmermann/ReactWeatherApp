@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Tree from './svgElements/Tree';
 import Sun from '../components/BackgroundDynamic/Sun'
 import Clouds from './BackgroundDynamic/Clouds';
@@ -7,16 +7,7 @@ import Thunderstorm from './BackgroundDynamic/Thunderstorm';
 
 function Background(props){
 
-    function weatherCondition(weather){
-        // if(weather === 'Thunderstorm'){
-        //     return <Thunderstorm />
-        // }else if(weather === 'Rain' || weather === 'Drizzle'){
-        //     return <Rain />
-        // }else if(weather === 'Clouds'){
-        //     return <Clouds />
-        // }else{
-        //     return <Sun />
-        // }
+    function weatherCondition(weather){   
         switch(weather){
             case 'Thunderstorm':
                 return <Thunderstorm />;
@@ -28,14 +19,34 @@ function Background(props){
             case 'Clouds':
                 return <Clouds />;
                 break;
+            case 'Clear':
+                return <Sun />;
+                break;
             default:
-                return <Sun />
+                return null
+        }
+    }
 
+    function backgroundTimes(time){
+
+        let classes = 'background'
+
+        if(time >= 12 && time <= 17){
+            classes += ' evening'
+            return classes
+        }else if(time >= 18 && time <= 22){
+            classes += ' dusk'
+            return classes
+        }else if(time >= 23 && time >= 5){
+            classes += ' night'
+            return classes
+        }else{
+            return classes
         }
     }
 
     return(
-        <section className="background">
+        <section className={backgroundTimes(props.timeHours)}>
             {
              weatherCondition(props.weather)  
             }
@@ -58,19 +69,6 @@ function Background(props){
                 </g>
             </svg>
 
-            {/* {
-                props.weather === 'Clouds' ?
-
-                <Clouds />
-                
-
-                :
-
-                null
-            } */}
-
-           
-            
             <svg id="ground"></svg>
 
             <svg id="hills" width="700" height="170">

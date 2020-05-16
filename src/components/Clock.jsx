@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 function Clock(){
 
 
-    let [time, setTime] = useState(new Date().toLocaleString())
+    let [time, setTime] = useState(new Date().toLocaleTimeString())
+
 
     useEffect(() => {
         let intervalID = setInterval(
@@ -17,10 +18,28 @@ function Clock(){
     })
 
     function currentTime(){
-        setTime(new Date().toLocaleString())
+        setTime(new Date().toLocaleTimeString())
     }
+
+    // function getHours(time){
+    //     if(time >= 12 && time <= 17){
+    //         return <p>Bonne après-midi</p>
+    //     }else if(time >= 18 && time <= 22){
+    //         return <p>Bonne soirée</p>
+    //     }else if(time >= 23 && time >= 5){
+    //         return <p>Bonne nuit</p>
+    //     }else{
+    //         return <p>Bonjour !! </p>
+    //     }
+    // }
+
+    let timeHours =  new Date().getHours()
+
     return(
-        <p>{time}</p>
+
+        <div className="clock">
+            <p>{time}</p>
+        </div>
     )
 }
 
