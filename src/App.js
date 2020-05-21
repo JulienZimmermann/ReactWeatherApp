@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Form from './components/Form';
 import Element from './components/Element'
 import Background from './components/Background'
+import Clock from './components/Clock';
 
 
 
@@ -14,20 +15,20 @@ function App() {
   let [code, setCode] = useState('q')
   let[responseQuery, setResponseQuery] = useState([])
   const [disabled, setDisabled] = useState(true) 
-  // let [loading, setLoading] = useState(false)
+  let[noCity, setNoCity] = useState(false)
+  let[errorAPI, setErrorAPI] = useState(false)
+
 
   useEffect(()=>{
 
     query.length > 0 && getRequest()
-    console.log(weather);
     
-
     return  function cleanup(){
           setCity('')
           setDisabled(true)
-        
+          setResponseQuery([])
+          setNoCity(false)
     }
-
   },[query])
 
   //Update code: ZIP or Q
@@ -52,16 +53,19 @@ function App() {
       
       let request = await fetch(`https://api.openweathermap.org/data/2.5/weather?${code}=${query},fr&appid=09290ade0b004a4b2b1d695dec899458&lang=fr&units=metric`)
       
-          let data = await request.json()
-          
-          //Update query array
-          setResponseQuery(data)
-          setWeather(data.weather[0].main);
+      if(request.ok){
+        let data = await request.json()
         
-          // setLoading(false)
-        
-    } catch (error) {
+        //Update query array
+        setResponseQuery(data)
+        setWeather(data.weather[0].main);
+      }else{
+        setNoCity(true)
+      }
       
+          
+    } catch (error) {
+      setErrorAPI(true)
       console.error(error)
     }
     
@@ -84,12 +88,15 @@ function App() {
     }
   }
 
+  let timeHours =  new Date().getHours()
+
   return(
-    <>
+    <React.Fragment>
       <Background
         weather={weather}
+        timeHours={timeHours}
       >
-        
+        {/* <Clock /> */}
         <main className="main">
           <div className="container_main_big_title">
             <h1 className="main_big_title">Weather App</h1>
@@ -103,11 +110,13 @@ function App() {
 
           <Element 
             query={query}
-            results={responseQuery}
+            responseQuery={responseQuery}
+            noCity={noCity}
+            errorAPI={errorAPI}
           />
         </main>
       </Background>
-    </>
+    </React.Fragment>
     
   )
 }

@@ -101,6 +101,15 @@ html, body {
 /*END PART GENERAL
 ===================*/
 
+/*PART NOCITY
+=====================*/
+.error_message{
+  text-align: center;
+  font-size: 26px;
+}
+/*END PART NOCITY
+======================*/
+
 /*PART BACKGROUND
 ====================*/
 
@@ -328,3 +337,29 @@ html, body {
 }
 /*END PART ELEMENTS
 =======================*/
+
+/*PART CLOCK
+=================*/
+.clock{
+  position: absolute;
+  border: 4px solid green;
+  color: #FFF;
+  font-size: 29px;
+  width: 200px;
+  text-align: center;
+  height: 50px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.more_time{
+  width: 50px;
+  height: 50px;
+  background: rgb(165, 161, 161);
+  cursor: pointer;
+  border: 1px solid rgb(73, 73, 73);
+}
+/*END PART CLOCK
+==================*/
