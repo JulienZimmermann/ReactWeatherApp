@@ -4,27 +4,29 @@ import Element from './components/Element'
 import Background from './components/Background'
 import Clock from './components/Clock';
 
-
-
 function App() {
 
 
   let[city, setCity] = useState('')
+  let[country, setCountry] = useState('none')
   let [query, setQuery] = useState('')
   let [weather, setWeather] = useState('')
   let [code, setCode] = useState('q')
   let[responseQuery, setResponseQuery] = useState([])
-  const [disabled, setDisabled] = useState(true) 
+  let [disabled, setDisabled] = useState(true) 
   let[noCity, setNoCity] = useState(false)
   let[errorAPI, setErrorAPI] = useState(false)
 
 
   useEffect(()=>{
 
-    query.length > 0 && getRequest()
-    
+    if(query.length > 0 && country !== 'none'){
+      getRequest()
+    } 
+
     return  function cleanup(){
           setCity('')
+          setCountry('none')
           setDisabled(true)
           setResponseQuery([])
           setNoCity(false)
@@ -51,7 +53,7 @@ function App() {
     try {
       
       
-      let request = await fetch(`https://api.openweathermap.org/data/2.5/weather?${code}=${query},fr&appid=09290ade0b004a4b2b1d695dec899458&lang=fr&units=metric`)
+      let request = await fetch(`https://api.openweathermap.org/data/2.5/weather?${code}=${query},${country}&appid=09290ade0b004a4b2b1d695dec899458&lang=fr&units=metric`)
       
       if(request.ok){
         let data = await request.json()
@@ -59,6 +61,7 @@ function App() {
         //Update query array
         setResponseQuery(data)
         setWeather(data.weather[0].main);
+        
       }else{
         setNoCity(true)
       }
@@ -75,6 +78,7 @@ function App() {
   function updateQuery(e){
     e.preventDefault()
     setQuery(city)
+    setCountry(country)
     console.log("mis à jour de query")
   }
 
@@ -88,6 +92,14 @@ function App() {
     }
   }
 
+  //Update country with select form
+  function updateCountry(e){
+    country = e.target.value
+    setCountry(country)
+    console.log(country);
+    
+  }
+
   let timeHours =  new Date().getHours()
 
   return(
@@ -96,7 +108,7 @@ function App() {
         weather={weather}
         timeHours={timeHours}
       >
-        {/* <Clock /> */}
+        <Clock />
         <main className="main">
           <div className="container_main_big_title">
             <h1 className="main_big_title">Weather App</h1>
@@ -106,6 +118,8 @@ function App() {
             updateCity={updateCity}
             updateQuery={updateQuery}
             disabled={disabled}
+            updateCountry={updateCountry}
+            country={country}
           />
 
           <Element 
