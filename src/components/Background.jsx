@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Tree from './svgElements/Tree';
 import Sun from '../components/BackgroundDynamic/Sun'
@@ -31,7 +32,7 @@ function Background(props){
 
         let classes = 'background'
 
-        if(time >= 12 && time <= 17){
+        if(time >= 8 && time <= 17){
             classes += ' evening'
             return classes
         }else if(time >= 18 && time <= 22){
@@ -44,6 +45,8 @@ function Background(props){
             return classes
         }
     }
+
+    const children = props.children;
 
     return(
         <section className={backgroundTimes(props.timeHours)}>
@@ -107,10 +110,14 @@ function Background(props){
 
             </svg>
 
-    {props.children}
+    {children}
 
 </section>
     )
+}
+
+Background.propTypes ={
+    children: PropTypes.element.isRequired
 }
 
 export default Background

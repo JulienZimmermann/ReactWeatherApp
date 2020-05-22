@@ -1,10 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-function Form ({updateQuery,city,updateCity, disabled}){
+
+function Form ({updateQuery,city,updateCity, disabled, country, updateCountry}){
 
     function getBadgeClasses() {
-        let classes = "form_element submitButton";
-        classes += city.length > 0 ? " green" : " ";
+        let classes = "form_element submitButton ";
+        classes += city.length > 0 && country !== 'none' ? "submitButton_activated" : "submitButton_disabled";
         return classes; 
     }
 
@@ -20,27 +22,12 @@ function Form ({updateQuery,city,updateCity, disabled}){
                     value={city}
                     onChange={updateCity}
                 />
-                {/* <label>
-                    <input
-                        type="radio"
-                        name="units"
-                        // checked={unit === "metric"}
-                        value="metric"
-                        // onChange={(e) => setUnit(e.target.value)}
-                    />
-                    Celsius
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        name="units"
-                        // checked={unit === "imperial"}
-                        value="imperial"
-                        // onChange={(e) => setUnit(e.target.value)}
-                    />
-                    Fahrenheit
-                </label> */}
-
+                <select value={country} onChange={updateCountry}>
+                    <option value="none">-</option>
+                    <option value="fr">France</option>
+                    <option value="us">Amérique</option>
+                </select>
+                
                 <input  disabled={disabled} className={getBadgeClasses()} type="submit" value="Envoyer" />
             </form>
         </React.Fragment>
@@ -48,4 +35,16 @@ function Form ({updateQuery,city,updateCity, disabled}){
 
 }
 
+Form.propTypes = {
+    updateQuery: PropTypes.func.isRequired,
+    city: PropTypes.oneOfType([
+        PropTypes.string.isRequired,
+        PropTypes.number.isRequired
+    ]),
+    updateCity: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    country: PropTypes.string.isRequired
+}
+
 export default Form
+
