@@ -6,13 +6,14 @@ function Form ({updateQuery,city,updateCity, disabled, country, updateCountry}){
 
     function getBadgeClasses() {
         let classes = "form_element submitButton ";
-        classes += city.length > 0 && country !== 'none' ? "submitButton_activated" : "submitButton_disabled";
+        classes +=  disabled === false ? "submitButton_activated" : "submitButton_disabled";
         return classes; 
     }
 
     return(
         <React.Fragment>
             <form className="form" onSubmit={updateQuery}>
+                
                 <input 
                     className="form_element input_text_city"
                     type="text"
@@ -22,13 +23,14 @@ function Form ({updateQuery,city,updateCity, disabled, country, updateCountry}){
                     value={city}
                     onChange={updateCity}
                 />
-                <select value={country} onChange={updateCountry}>
+                <select className="form_element select_option_country" value={country} onChange={updateCountry}>
                     <option value="none">-</option>
                     <option value="fr">France</option>
                     <option value="us">Amérique</option>
+                    <option value="de">Allemagne</option>
                 </select>
                 
-                <input  disabled={disabled} className={getBadgeClasses()} type="submit" value="Envoyer" />
+                <input disabled={disabled} className={getBadgeClasses()} type="submit" value="Envoyer" />
             </form>
         </React.Fragment>
     )

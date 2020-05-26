@@ -63,7 +63,7 @@
   background: -webkit-linear-gradient(top, #52aaee,  #4c82b8);
 }
 
-.sky_thunderstorm{
+.sky_thunderstorm, .sky_rain{
   background: -webkit-linear-gradient(top, #152a3a,  #111c29);
 }
 
@@ -98,6 +98,10 @@ html, body {
   body { zoom: 0.7; }
 }
 
+body{
+  font-family: 'Roboto Slab', serif;
+}
+
 /*END PART GENERAL
 ===================*/
 
@@ -114,6 +118,7 @@ html, body {
 ====================*/
 
 .background{
+  overflow: hidden;
   display: flex;
   justify-content: center;
   height: 100%;
@@ -143,7 +148,6 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid red;
   background: url(../images/rain.png);
   animation: rain 1.8s linear infinite; 
   box-sizing: border-box;
@@ -178,7 +182,7 @@ html, body {
 
 }
 .cloud3 {
-  top: 5%;
+  top: 15%;
   left: 4%;
   
 } 
@@ -237,7 +241,6 @@ html, body {
 =============*/
 .main{
     background-color: rgba(255, 250, 250, 0.7);
-    border: 4px solid red;
     border-radius: 5%;
     top: 30%;
     z-index: 99;
@@ -251,7 +254,6 @@ html, body {
 } */
 
 .container_main_big_title{
-  border: 2px solid black;
   text-align: center;
   font-size: 32px;
   padding: 0.5rem;
@@ -262,7 +264,6 @@ html, body {
 /*FORM PART
 =================*/
 .form{
-  border: 4px solid green;
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -292,13 +293,25 @@ html, body {
 
 
 .submitButton{
-  background: -webkit-linear-gradient(left, #152c3e,  #37618a);
   color: #FFF;
   font-weight: bold;
   width: 40%;
   margin: auto;
-  cursor: pointer;
   border-radius: 50% 10% 50% 10%;
+}
+
+.submitButton_activated{
+  background: -webkit-linear-gradient(left, #152c3e,  #37618a);
+  cursor: pointer;
+}
+
+.submitButton_disabled{
+  background: -webkit-linear-gradient(left, #864d4d,  #e91111);
+  cursor: not-allowed;
+}
+
+.select_option_country{
+  margin-bottom: 15px;
 }
 
 /*END FORM PART
@@ -306,11 +319,6 @@ html, body {
 
 /*PART ELEMENTS
 ===================*/
-.element_weather{
-  border: 6px solid darkblue;
-  
-}
-
 .container_informations_weather{
   font-size: 25px;
   text-align: center;
@@ -321,10 +329,6 @@ html, body {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 38px;
-}
-
-.container_text_informations_weather{
-  border: 6px solid green
 }
 
 .element_information_weather {
@@ -340,26 +344,75 @@ html, body {
 
 /*PART CLOCK
 =================*/
-.clock{
+.time_container{
   position: absolute;
-  border: 4px solid green;
   color: #FFF;
-  font-size: 29px;
-  width: 200px;
-  text-align: center;
-  height: 50px;
+  font-size: 39px;
+  font-weight: 600;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: space-around;
+  padding: 0.4em 0.5em;
 }
 
-.more_time{
-  width: 50px;
-  height: 50px;
-  background: rgb(165, 161, 161);
-  cursor: pointer;
-  border: 1px solid rgb(73, 73, 73);
-}
 /*END PART CLOCK
 ==================*/
+
+/*PART SIMULATION
+  ==================*/
+.container_simulation{
+  background: -webkit-linear-gradient(left, #faf7f7,  #e0dede);
+  height: 40px;
+  border-radius: 15% 0 0 15%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  font-size: 25px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.simulation_hidden{
+  transform: translateX(0px);
+  transition: ease-in-out 0.5s;
+}
+
+.simulation_visible{
+  transform: translateX(0px);
+  transition: ease-in-out 0.5s;
+}
+
+.option{
+  font-weight: 900;
+  padding: 0.5rem;
+  background: -webkit-linear-gradient(left, #121b95,  #8bc1e6);
+  width: 40px;
+  text-align: center;
+  border-radius: 15% 0 0 15%;
+}
+
+.option_simulation{
+  margin: 140px 0 0;
+  background: -webkit-linear-gradient(left, #faf7f7,  #e0dede);
+  display: flex;
+  flex-direction: column;
+}
+
+.option_sign{
+  font-size: 32px;
+  color: #FFF;
+}
+
+.title_option_simulation{
+  margin-top: 45px;
+  padding: 0.5rem 0.8rem 0 0.8rem ;
+}
+
+.item_option_simulation{
+  font-size: 30px;
+  padding: 0.5rem 0.8rem 0 0.8rem ;
+  list-style-type: none;
+  border: none;
+}
+/*END PART SIMULATION
+=========================*/

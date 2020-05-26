@@ -3,24 +3,26 @@ import Form from './components/Form';
 import Element from './components/Element'
 import Background from './components/Background'
 import Clock from './components/Clock';
+import Simulation from './components/Simulation';
 
 function App() {
 
 
-  let[city, setCity] = useState('')
-  let[country, setCountry] = useState('none')
-  let [query, setQuery] = useState('')
-  let [weather, setWeather] = useState('')
-  let [code, setCode] = useState('q')
+  let[city, setCity] = useState('') //Input City value
+  let[country, setCountry] = useState('none') //Selecty country value
+  let [query, setQuery] = useState('') //Query
+  let [weather, setWeather] = useState('') // Weather Main
+  let [code, setCode] = useState('q') // ZIP or CODE
   let[responseQuery, setResponseQuery] = useState([])
   let [disabled, setDisabled] = useState(true) 
-  let[noCity, setNoCity] = useState(false)
-  let[errorAPI, setErrorAPI] = useState(false)
+  let[noCity, setNoCity] = useState(false) //ERROR CITY SEARCH
+  let[errorAPI, setErrorAPI] = useState(false) // ERROR CALL API
+  let[choiseWeatherSimulation, setChoiseWeatherSimulation] = useState('') //CHOISE WEATHER SIMULATION
 
 
   useEffect(()=>{
 
-    if(query.length > 0 && country !== 'none'){
+    if(query.length > 0){
       getRequest()
     } 
 
@@ -60,6 +62,8 @@ function App() {
         
         //Update query array
         setResponseQuery(data)
+
+        //Rain, Clear, Thunderstorm, Clouds
         setWeather(data.weather[0].main);
         
       }else{
@@ -79,26 +83,29 @@ function App() {
     e.preventDefault()
     setQuery(city)
     setCountry(country)
-    console.log("mis à jour de query")
   }
 
   //Update city value with input text
   function updateCity(e){
     city = e.target.value
     setCity(city)
-
-    if(city.length > 0){
-      setDisabled(false)
-    }
   }
 
   //Update country with select form
   function updateCountry(e){
     country = e.target.value
     setCountry(country)
+
+    country !== 'none' && setDisabled(false)
     console.log(country);
-    
   }
+
+  function weatherSimulation(e){
+    choiseWeatherSimulation = e.target.value;
+    setChoiseWeatherSimulation(choiseWeatherSimulation)
+    console.log(choiseWeatherSimulation);
+       
+}
 
   let timeHours =  new Date().getHours()
 
@@ -107,8 +114,12 @@ function App() {
       <Background
         weather={weather}
         timeHours={timeHours}
+        weatherSimulation={choiseWeatherSimulation}
       >
         <Clock />
+        <Simulation 
+          weatherSimulation={weatherSimulation}
+        />
         <main className="main">
           <div className="container_main_big_title">
             <h1 className="main_big_title">Weather App</h1>
@@ -117,8 +128,8 @@ function App() {
             city={city}
             updateCity={updateCity}
             updateQuery={updateQuery}
-            disabled={disabled}
             updateCountry={updateCountry}
+            disabled={disabled}
             country={country}
           />
 

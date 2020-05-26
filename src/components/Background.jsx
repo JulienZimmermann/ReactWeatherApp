@@ -51,7 +51,7 @@ function Background(props){
     return(
         <section className={backgroundTimes(props.timeHours)}>
             {
-             weatherCondition(props.weather)  
+             weatherCondition(props.weather || props.weatherSimulation)  
             }
             <svg height="390" width="550" id="mountains">
                 <polygon points="300,390 190,90 320,130 400,340" fill="#5d2042" />
