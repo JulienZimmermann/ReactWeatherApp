@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 
-function Element({responseQuery, noCity, errorAPI}){
+function Element({responseQuery, noCity, errorAPI, weather}){
 
     return(
 
@@ -27,7 +27,7 @@ function Element({responseQuery, noCity, errorAPI}){
                 }
                 
                 
-              {responseQuery.length === 0 ? 
+              {responseQuery.length === 0 || weather === '' ?
 
                 null
 
